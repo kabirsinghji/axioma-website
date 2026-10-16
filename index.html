@@ -18,8 +18,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="assets/css/styles.css">
-<script>document.documentElement.classList.add('js');</script>
+<script>(function(d){d.classList.add('js');if(window.matchMedia&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('motion');})(document.documentElement);</script>
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -43,6 +44,7 @@
 <main id="main">
 <section id="top" class="hero on-dark">
   <img class="hero-media" src="assets/img/hero-dark.jpg" alt="" width="2400" height="1250">
+  <canvas class="bead-canvas" data-field="hero" aria-hidden="true"></canvas>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-body">
@@ -64,66 +66,68 @@
 
 <section class="band band-ground" aria-labelledby="vision-title">
   <div class="container">
-    <div class="stack">
+    <div class="stack" data-reveal>
       <p class="eyebrow">Our vision</p>
       <h2 id="vision-title" class="statement">Durable, precisely targeted medicines that help people keep their sight.</h2>
     </div>
     <div class="pillars">
-      <div class="pillar"><h3 class="h4">Reach new targets</h3><p>Peptides can grip the large, flat protein surfaces that small molecules miss.</p></div>
-      <div class="pillar"><h3 class="h4">Built for the eye</h3><p>We tune each candidate for stability and delivery to the retina from the start.</p></div>
-      <div class="pillar"><h3 class="h4">Fewer injections</h3><p>Our goal is longer intervals between treatments, for patients and for clinics.</p></div>
+      <div class="pillar" data-reveal style="--delay: 100ms"><h3 class="h4">Reach new targets</h3><p>Peptides can grip the large, flat protein surfaces that small molecules miss.</p></div>
+      <div class="pillar" data-reveal style="--delay: 220ms"><h3 class="h4">Built for the eye</h3><p>We tune each candidate for stability and delivery to the retina from the start.</p></div>
+      <div class="pillar" data-reveal style="--delay: 340ms"><h3 class="h4">Fewer injections</h3><p>Our goal is longer intervals between treatments, for patients and for clinics.</p></div>
     </div>
   </div>
 </section>
 
-<section id="approach" class="image-band band" aria-labelledby="approach-title">
-  <img class="hero-media media-right" src="assets/img/approach-light.jpg" alt="" width="2400" height="1417">
-  <div class="container">
+<section id="approach" class="scrolly" aria-labelledby="approach-title">
+  <div class="scrolly-stage" aria-hidden="true">
+    <canvas class="scrolly-canvas"></canvas>
+  </div>
+  <div class="container scrolly-steps">
     <h2 id="approach-title" class="tag">Our approach</h2>
-    <div class="steps">
-      <div class="step"><p class="eyebrow">01 · The problem</p><h3 class="h3">Key disease targets are out of reach</h3><p>Many proteins behind retinal disease act through large, flat contact surfaces that small molecules can’t grip. Biologics reach some of them, but need injections into the eye every few weeks or months.</p></div>
-      <div class="step"><p class="eyebrow">02 · Our approach</p><h3 class="h3">Peptides designed for the eye</h3><p>We design peptides that bind these surfaces with antibody-like precision, in a much smaller molecule built for ocular delivery.</p></div>
-      <div class="step"><p class="eyebrow">03 · How we work</p><h3 class="h3">Design, test, optimize</h3><p>We design candidates computationally, test them with partner labs, and optimize the best ones for stability and delivery in the eye.</p></div>
-    </div>
+    <div class="step" data-step><p class="eyebrow">01 · The problem</p><h3 class="h3">Key disease targets are out of reach</h3><p>Many proteins behind retinal disease act through large, flat contact surfaces that small molecules can’t grip. Biologics reach some of them, but need injections into the eye every few weeks or months.</p></div>
+    <div class="step" data-step><p class="eyebrow">02 · Our approach</p><h3 class="h3">Peptides designed for the eye</h3><p>We design peptides that bind these surfaces with antibody-like precision, in a much smaller molecule built for ocular delivery.</p></div>
+    <div class="step" data-step><p class="eyebrow">03 · How we work</p><h3 class="h3">Design, test, optimize</h3><p>We design candidates computationally, test them with partner labs, and optimize the best ones for stability and delivery in the eye.</p></div>
   </div>
 </section>
 
 <section class="band band-white" aria-labelledby="why-title">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <div class="stack">
         <p class="eyebrow">Why peptides</p>
         <h2 id="why-title" class="h2">The right size for flat protein surfaces</h2>
       </div>
     </div>
     <div class="diagram">
-      <figure>
+      <figure data-reveal style="--delay: 0ms">
         <svg viewBox="0 0 280 170" role="img" aria-label="A small molecule hovering over a flat protein surface with no pocket to bind">
           <rect x="16" y="112" width="248" height="58" rx="18" fill="#DCE4E4"/>
           <text x="140" y="150" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.5" fill="#5B6670">TARGET PROTEIN</text>
-          <polygon points="140,52 155,61 155,79 140,88 125,79 125,61" fill="#0D1B2A"/>
-          <line x1="140" y1="96" x2="140" y2="108" stroke="#5B6670" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <polygon class="sm" points="140,52 155,61 155,79 140,88 125,79 125,61" fill="#0D1B2A"/>
+          <line class="gap" x1="140" y1="96" x2="140" y2="108" stroke="#5B6670" stroke-width="1.5" stroke-dasharray="3 3"/>
         </svg>
         <figcaption><h3 class="h4">Small molecule</h3><p>Needs a deep pocket to hold on to. Struggles with flat protein surfaces.</p></figcaption>
       </figure>
-      <figure>
+      <figure data-reveal style="--delay: 120ms">
         <svg viewBox="0 0 280 170" role="img" aria-label="A large Y-shaped antibody binding the protein surface">
           <rect x="16" y="112" width="248" height="58" rx="18" fill="#DCE4E4"/>
           <text x="140" y="150" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.5" fill="#5B6670">TARGET PROTEIN</text>
-          <g fill="none" stroke="#0D1B2A" stroke-width="14" stroke-linecap="round">
+          <g class="ab" fill="none" stroke="#0D1B2A" stroke-width="14" stroke-linecap="round">
             <path d="M140 18 V62"/><path d="M140 62 L96 108"/><path d="M140 62 L184 108"/>
           </g>
         </svg>
         <figcaption><h3 class="h4">Antibody</h3><p>Binds large surfaces, but is a large protein made in cells and injected into the eye on a recurring schedule.</p></figcaption>
       </figure>
-      <figure class="is-ours">
+      <figure class="is-ours" data-reveal style="--delay: 240ms">
         <svg viewBox="0 0 280 170" role="img" aria-label="A peptide chain lying along the flat protein surface, contacting it broadly">
           <rect x="16" y="112" width="248" height="58" rx="18" fill="#DCE4E4"/>
           <text x="140" y="150" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.5" fill="#5B6670">TARGET PROTEIN</text>
-          <circle cx="70" cy="100" r="10" fill="#0E7C86"/><circle cx="90" cy="96" r="10" fill="#3DB5BF"/>
-          <circle cx="110" cy="99" r="10" fill="#0D1B2A"/><circle cx="130" cy="96" r="10" fill="#3DB5BF"/>
-          <circle cx="150" cy="99" r="10" fill="#E3A72F"/><circle cx="170" cy="96" r="10" fill="#0E7C86"/>
-          <circle cx="190" cy="99" r="10" fill="#3DB5BF"/><circle cx="210" cy="96" r="10" fill="#0D1B2A"/>
+          <g class="pep">
+          <circle style="--k: 0" cx="70" cy="100" r="10" fill="#0E7C86"/><circle style="--k: 1" cx="90" cy="96" r="10" fill="#3DB5BF"/>
+          <circle style="--k: 2" cx="110" cy="99" r="10" fill="#0D1B2A"/><circle style="--k: 3" cx="130" cy="96" r="10" fill="#3DB5BF"/>
+          <circle style="--k: 4" cx="150" cy="99" r="10" fill="#E3A72F"/><circle style="--k: 5" cx="170" cy="96" r="10" fill="#0E7C86"/>
+          <circle style="--k: 6" cx="190" cy="99" r="10" fill="#3DB5BF"/><circle style="--k: 7" cx="210" cy="96" r="10" fill="#0D1B2A"/>
+          </g>
         </svg>
         <figcaption><h3 class="h4">Peptide, our focus</h3><p>Grips large surfaces with high precision, in a much smaller molecule made by chemical synthesis.</p></figcaption>
       </figure>
@@ -134,22 +138,22 @@
 <section id="focus" class="band band-ground" aria-labelledby="focus-title">
   <div class="container">
     <div class="split">
-      <div class="stack">
+      <div class="stack" data-reveal>
         <p class="eyebrow">Focus</p>
         <h2 id="focus-title" class="h2">Diseases that take central vision</h2>
         <p class="body">We are starting with degenerative diseases of the retina. Age-related macular degeneration is a leading cause of severe visual impairment and blindness in the United States,<sup>2</sup> and diabetic eye disease is the leading cause of vision loss among working-age adults in the US.<sup>3</sup></p>
       </div>
-      <div class="stats">
-        <div class="stat"><span class="stat-num">196<small>M</small></span><span class="stat-label">people worldwide were living with age-related macular degeneration in 2020<sup>1</sup></span></div>
-        <div class="stat"><span class="stat-num">288<small>M</small></span><span class="stat-label">are projected to be living with it by 2040<sup>1</sup></span></div>
+      <div class="stats" data-reveal style="--delay: 120ms">
+        <div class="stat"><span class="stat-num"><span data-count="196">196</span><small>M</small></span><span class="stat-label">people worldwide were living with age-related macular degeneration in 2020<sup>1</sup></span></div>
+        <div class="stat"><span class="stat-num"><span data-count="288">288</span><small>M</small></span><span class="stat-label">are projected to be living with it by 2040<sup>1</sup></span></div>
       </div>
     </div>
     <div class="card-grid focus-cards">
-      <article class="card"><h3 class="h3">Wet AMD</h3><p>Leaky blood vessels under the retina damage central vision. Treatment means repeated injections into the eye.</p></article>
-      <article class="card"><h3 class="h3">Dry AMD and geographic atrophy</h3><p>Cells in the macula slowly die off. Current treatments slow the damage but do not stop it.</p></article>
-      <article class="card"><h3 class="h3">Diabetic eye disease</h3><p>Damaged retinal vessels leak fluid into the macula and blur central vision.</p></article>
+      <article class="card" data-reveal style="--delay: 0ms"><h3 class="h3">Wet AMD</h3><p>Leaky blood vessels under the retina damage central vision. Treatment means repeated injections into the eye.</p></article>
+      <article class="card" data-reveal style="--delay: 120ms"><h3 class="h3">Dry AMD and geographic atrophy</h3><p>Cells in the macula slowly die off. Current treatments slow the damage but do not stop it.</p></article>
+      <article class="card" data-reveal style="--delay: 240ms"><h3 class="h3">Diabetic eye disease</h3><p>Damaged retinal vessels leak fluid into the macula and blur central vision.</p></article>
     </div>
-    <p class="sources"><sup>1</sup> Wong WL et al. <a href="https://doi.org/10.1016/S2214-109X(13)70145-1">Lancet Glob Health. 2014;2(2):e106–16</a>.
+    <p class="sources" data-reveal><sup>1</sup> Wong WL et al. <a href="https://doi.org/10.1016/S2214-109X(13)70145-1">Lancet Glob Health. 2014;2(2):e106–16</a>.
       <sup>2</sup> National Eye Institute, <a href="https://www.nei.nih.gov/about/news-and-events/news/age-related-macular-degeneration-status-research">Age-Related Macular Degeneration: Status of Research</a>.
       <sup>3</sup> National Eye Institute, <a href="https://www.nei.nih.gov/research-and-training/research-news/national-diabetes-month-remember-keep-eye-your-eyes">National Diabetes Month</a>.</p>
   </div>
@@ -157,7 +161,7 @@
 
 <section id="team" class="band band-white" aria-labelledby="team-title">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <div class="stack">
         <p class="eyebrow">Team</p>
         <h2 id="team-title" class="h2">Founders</h2>
@@ -165,7 +169,7 @@
       </div>
     </div>
     <div class="people">
-      <article class="person">
+      <article class="person" data-reveal style="--delay: 0ms">
         <div class="headshot" role="img" aria-label="Photo to come"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="40" r="20" fill="#B3C0C6"/><path d="M8 100c4-24 22-36 42-36s38 12 42 36z" fill="#B3C0C6"/></svg></div>
         <div>
           <h3 class="person-name">Kabir Singh</h3>
@@ -173,7 +177,7 @@
         </div>
         <p class="person-bio">[Short bio: training, research focus and prior roles.]</p>
       </article>
-      <article class="person">
+      <article class="person" data-reveal style="--delay: 120ms">
         <div class="headshot" role="img" aria-label="Photo to come"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="40" r="20" fill="#B3C0C6"/><path d="M8 100c4-24 22-36 42-36s38 12 42 36z" fill="#B3C0C6"/></svg></div>
         <div>
           <h3 class="person-name">Raja [Surname]</h3>
@@ -187,7 +191,7 @@
 
 <section id="contact" class="band band-ground" aria-labelledby="contact-title">
   <div class="container split">
-    <div class="stack">
+    <div class="stack" data-reveal>
       <p class="eyebrow">Contact</p>
       <h2 id="contact-title" class="h2">Work with us</h2>
       <p class="body">We are looking for partners and early supporters who share our focus on preserving sight.</p>
@@ -202,7 +206,7 @@
         <li><span class="eyebrow">Location</span><span class="address">Newark, New Jersey</span></li>
       </ul>
     </div>
-    <div class="panel">
+    <div class="panel" data-reveal style="--delay: 120ms">
       <form class="form" data-form="contact" data-success="Thank you. We will get back to you soon." novalidate>
         <div class="field-row">
           <div class="field"><label for="contact-name">Name</label><input id="contact-name" name="name" type="text" required autocomplete="name"></div>
@@ -229,6 +233,8 @@
 </section>
 </main>
 <footer class="site-footer">
+  <canvas class="bead-canvas" data-field="footer" aria-hidden="true"></canvas>
+  <div class="footer-shade" aria-hidden="true"></div>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">

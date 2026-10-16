@@ -18,8 +18,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="assets/css/styles.css">
-<script>document.documentElement.classList.add('js');</script>
+<script>(function(d){d.classList.add('js');if(window.matchMedia&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('motion');})(document.documentElement);</script>
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/motion.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -55,6 +56,8 @@
 </section>
 </main>
 <footer class="site-footer">
+  <canvas class="bead-canvas" data-field="footer" aria-hidden="true"></canvas>
+  <div class="footer-shade" aria-hidden="true"></div>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">

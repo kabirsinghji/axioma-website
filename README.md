@@ -22,7 +22,8 @@ It is a one-page static site (HTML, CSS and a little JavaScript) with no build s
 ```
 assets/css/styles.css   all styles (colors and type scale are tokens at the top)
 assets/js/main.js       mobile menu and form handling
-assets/img/             hero and section imagery, social share image
+assets/js/motion.js     animation: hero model, the four-step approach scene, footer contours
+assets/img/             still versions of the animations (shown with reduced motion), social share image
 assets/logo/            Axioma logo files (SVG)
 favicon.svg, favicon-32.png, apple-touch-icon.png
 ```
@@ -61,7 +62,7 @@ Everything in square brackets is a placeholder. Search `index.html` for `[` to f
 
 - [ ] Email address: `hello@[domain]`
 - [ ] `Raja [Surname]`
-- [ ] Founder bios: `[Short bio: …]`
+- [ ] Raja's bio: `[Short bio: …]` (Kabir's bio is written; review it)
 - [ ] Headshots: replace each `<div class="headshot">…</div>` with `<img class="headshot" src="assets/img/team/<name>.jpg" alt="<Name>">` (portrait, 4:5)
 - [ ] Add a privacy policy before collecting emails, and link it in the footer
 - [ ] Review the copy for anything you are not ready to disclose publicly
@@ -80,6 +81,6 @@ When there is more to show (advisors, a named platform, programs, news), add a s
 
 Colors, fonts and the type scale are CSS custom properties at the top of `assets/css/styles.css`. The fonts are IBM Plex Sans and IBM Plex Mono from Google Fonts.
 
-The imagery in `assets/img/` was generated for Axioma and can be replaced with your own renders or photography of the same sizes.
+The animations follow the design workflow on the page: target surface, sequence search, docking funnel, then molecular dynamics and an alanine scan. The protein, peptide and every plotted number are illustrative and generated in `motion.js`; they are not results or a real target, and the panels say so. The still images in `assets/img/` are frames rendered from the same animations.
 
 © 2026 Axioma Therapeutics. All rights reserved.

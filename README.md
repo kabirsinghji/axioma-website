@@ -2,21 +2,22 @@
 
 The company website for Axioma Therapeutics: peptide therapeutics for degenerative eye disease.
 
-It is a plain static site (HTML, CSS and a little JavaScript) with no build step, so it runs as-is on GitHub Pages or any static host.
+It is a one-page static site (HTML, CSS and a little JavaScript) with no build step, so it runs as-is on GitHub Pages or any static host.
 
-## Pages
+## What is on the page
 
-| File | Page |
-| --- | --- |
-| `index.html` | Home |
-| `science.html` | Science and platform |
-| `pipeline.html` | Pipeline |
-| `diseases.html` | Disease areas and a note for patients |
-| `team.html` | Founders, advisors and careers |
-| `partnering.html` | Partnering |
-| `news.html` | News, media contact and logo downloads |
-| `contact.html` | Contact details and contact form |
-| `404.html` | Page-not-found page (GitHub Pages uses it automatically) |
+`index.html` is the whole site. The menu jumps between its sections:
+
+1. Hero, with a "Follow our progress" prompt
+2. Our vision
+3. Our approach (`#approach`)
+4. Why peptides, with a small diagram comparing drug types
+5. Focus: the retinal diseases we are starting with, with sourced figures (`#focus`)
+6. Founders (`#team`)
+7. Contact: who we want to work with, plus a contact form (`#contact`)
+8. Footer with a newsletter signup (`#updates`)
+
+`404.html` is the page-not-found page; GitHub Pages uses it automatically.
 
 ```
 assets/css/styles.css   all styles (colors and type scale are tokens at the top)
@@ -26,11 +27,11 @@ assets/logo/            Axioma logo files (SVG)
 favicon.svg, favicon-32.png, apple-touch-icon.png
 ```
 
-The header and footer are repeated in every page. If you change the menu or footer, change it in all nine files.
+`index.html` and `404.html` share the same header and footer. If you change the menu or footer, change it in both.
 
 ## Publish on GitHub Pages
 
-1. Create a new repository on GitHub, for example `axioma-website`.
+1. Create a new, empty repository on GitHub, for example `axioma-website`.
 2. Push this folder to it:
    ```
    git remote add origin https://github.com/<your-account>/axioma-website.git
@@ -43,11 +44,11 @@ The header and footer are repeated in every page. If you change the menu or foot
 
 When you have a domain, add it under **Settings → Pages → Custom domain**, then point your DNS at GitHub Pages as GitHub describes there. GitHub adds a `CNAME` file to the repository for you. Turn on **Enforce HTTPS** once the certificate is issued.
 
-After the domain is live, change the `og:image` line in each page's `<head>` to the full address, for example `https://<your-domain>/assets/img/og-image.jpg`, so link previews show the image.
+After the domain is live, change the `og:image` line in the `<head>` of both pages to the full address, for example `https://<your-domain>/assets/img/og-image.jpg`, so link previews show the image.
 
 ## Connect the forms
 
-GitHub Pages cannot receive form submissions on its own. The newsletter signup (in every footer) and the contact form post to a form service such as [Formspree](https://formspree.io):
+GitHub Pages cannot receive form submissions on its own. The newsletter signup (in the footer) and the contact form post to a form service such as [Formspree](https://formspree.io):
 
 1. Create two forms in Formspree (one for the newsletter, one for contact).
 2. Paste each form's URL into the `FORM_ENDPOINTS` setting at the top of `assets/js/main.js`.
@@ -56,19 +57,18 @@ Until you do, the forms tell visitors they are not connected yet and ask them to
 
 ## Before launch: fill in the placeholders
 
-Everything in square brackets is a placeholder. Search the project for `[` to find them all.
+Everything in square brackets is a placeholder. Search `index.html` for `[` to find them.
 
-- [ ] Email domain: `hello@[domain]`, `bd@[domain]`, `careers@[domain]`, `press@[domain]`, `science@[domain]`
-- [ ] Platform name: `[Platform name]` (home and science pages)
-- [ ] Program names, target classes and indications in the pipeline chart: `[AX-101]`, `[AX-102]`, `[Target class]`, `[Indication]`
-- [ ] Pipeline bar lengths: set with `style="--p: 18%"` on each bar (each stage column is 25%)
-- [ ] First programs line on the home page: `[pathway] in [indication]`
-- [ ] Team: `Raja [Surname]`, advisor names, degrees, affiliations and short bios
+- [ ] Email address: `hello@[domain]`
+- [ ] `Raja [Surname]`
+- [ ] Founder bios: `[Short bio: …]`
 - [ ] Headshots: replace each `<div class="headshot">…</div>` with `<img class="headshot" src="assets/img/team/<name>.jpg" alt="<Name>">` (portrait, 4:5)
-- [ ] News dates and summaries, publications and presentations
-- [ ] Add LinkedIn links for the team if you want them
-- [ ] Add a privacy policy page before collecting emails, and link it in the footer
-- [ ] Review the disease and science copy for anything you are not ready to disclose publicly
+- [ ] Add a privacy policy before collecting emails, and link it in the footer
+- [ ] Review the copy for anything you are not ready to disclose publicly
+
+## Adding more later
+
+When there is more to show (advisors, a named platform, programs, news), add a section to `index.html` using the existing section pattern, or add a page that copies the header and footer from `404.html`.
 
 ## Facts and sources used on the site
 

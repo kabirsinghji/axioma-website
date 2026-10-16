@@ -219,6 +219,8 @@ ul, ol { margin: 0; }
 .scrolly-canvas.is-live { opacity: 1; }
 .scrolly-steps { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 42vh; padding-block: 24vh 36vh; }
 .scrolly-steps .step { max-width: 520px; }
+/* On phones the scene sits above the cards; leave room at the end so the last card clears the docked chain. */
+@media (max-width: 760px) { .motion .scrolly-steps { padding-bottom: 80vh; } }
 .step {
   display: flex; flex-direction: column; gap: 10px; padding: 28px;
   background: var(--glass-light); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: var(--radius);

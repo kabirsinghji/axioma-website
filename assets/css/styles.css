@@ -213,12 +213,13 @@ ul, ol { margin: 0; }
 /* ---------- approach: pinned scene with steps scrolling over it ---------- */
 .scrolly { position: relative; background: var(--stage); }
 .scrolly-stage {
-  position: sticky; top: 0; height: 100vh; height: 100svh; margin-bottom: -100vh; margin-bottom: -100svh; overflow: hidden;
+  position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
   background: var(--stage) url("../img/approach-light.jpg") 75% center / cover no-repeat;
 }
 .scrolly-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 1s ease; }
 .scrolly-canvas.is-live { opacity: 1; }
-.scrolly-steps { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 42vh; padding-block: 24vh 36vh; }
+/* The steps pull up over the stage (not the reverse), so the stage releases when the section ends. */
+.scrolly-steps { position: relative; margin-top: -100vh; margin-top: -100svh; display: flex; flex-direction: column; align-items: flex-start; gap: 42vh; padding-block: 24vh 36vh; }
 .scrolly-steps .step { max-width: 520px; }
 .scrolly-caption { display: none; }
 .step {

@@ -21,7 +21,9 @@
   if (!root.classList.contains('motion')) return;
 
   var DPR = Math.min(window.devicePixelRatio || 1, 2);
-  var small = window.matchMedia('(max-width: 760px)').matches;
+  var smallQuery = window.matchMedia('(max-width: 760px)');
+  var small = smallQuery.matches;
+  window.addEventListener('resize', function () { small = smallQuery.matches; });
 
   // ---------- helpers ----------
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
@@ -196,9 +198,9 @@
     var N = 34, chain = [];
     for (var i = 0; i < N; i++) chain.push(pick());
     var surface = [];
-    for (var gx = -9; gx <= 9; gx++) {
-      for (var gz = -6; gz <= 6; gz++) {
-        surface.push({ x: gx * 0.16 + (gz % 2 ? 0.08 : 0), z: gz * 0.14, c: rand() < 0.08 ? '#C9E6E8' : '#DCE5E8' });
+    for (var gx = -8; gx <= 8; gx++) {
+      for (var gz = -5; gz <= 5; gz++) {
+        surface.push({ x: gx * 0.15 + (gz % 2 ? 0.075 : 0), z: gz * 0.15, c: rand() < 0.08 ? '#C9E6E8' : '#DCE5E8' });
       }
     }
     var progress = 0, shown = 0;
@@ -226,10 +228,10 @@
     var kick = animate(canvas, function (t) {
       shown += (progress - shown) * 0.08;
       var W = box.w, H = box.h;
-      var S = Math.min(W * (small ? 0.62 : 0.4), H * 0.62);
-      var cxs = W * (small ? 0.5 : 0.66), cys = H * (small ? 0.42 : 0.5);
-      var ang = -0.65 + shown * 1.2 + 0.06 * Math.sin(t * 0.3);
-      var tilt = 0.35;
+      var S = small ? Math.min(W * 0.4, H * 0.34) : Math.min(W * 0.27, H * 0.5);
+      var cxs = W * (small ? 0.5 : 0.67), cys = H * (small ? 0.36 : 0.52);
+      var ang = -0.4 + shown * 0.8 + 0.06 * Math.sin(t * 0.3);
+      var tilt = 0.42;
       var ca = Math.cos(ang), sa = Math.sin(ang), ct = Math.cos(tilt), st = Math.sin(tilt);
       function project(x, y, z) {
         var x1 = x * ca + z * sa, z1 = -x * sa + z * ca;
@@ -242,15 +244,15 @@
       ctx.fillStyle = '#E9EFF1';
       ctx.fillRect(0, 0, W, H);
       var items = [];
-      var surfaceY = 0.48;
+      var surfaceY = 0.5;
       surface.forEach(function (b) {
         var q = project(b.x, surfaceY, b.z);
-        items.push({ x: q.x, y: q.y, r: 0.062 * S * q.s, c: b.c, z: q.z, d: Math.abs(q.z) * 0.9, a: 0.95 });
+        items.push({ x: q.x, y: q.y, r: 0.056 * S * q.s, c: b.c, z: q.z, d: Math.abs(q.z) * 0.9, a: 0.95 });
       });
       for (var k = 0; k < N; k++) {
         var pt = chainPoint(k / (N - 1), shown, t);
         var q = project(pt[0], pt[1], pt[2]);
-        items.push({ x: q.x, y: q.y, r: 0.085 * S * q.s, c: chain[k], z: q.z - 0.001, d: Math.abs(q.z) * 0.7, a: 1 });
+        items.push({ x: q.x, y: q.y, r: 0.08 * S * q.s, c: chain[k], z: q.z - 0.001, d: Math.abs(q.z) * 0.7, a: 1 });
       }
       items.sort(function (a, b) { return b.z - a.z; });
       items.forEach(function (p) { bead(ctx, p.x, p.y, p.r, p.c, clamp(p.d, 0, 1), p.a); });
